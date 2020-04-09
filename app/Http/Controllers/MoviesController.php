@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
-use App\ViewModels\MovieSViewModel;
+use App\ViewModels\MoviesViewModel;
+use App\ViewModels\MovieViewModel;
 
 class MoviesController extends Controller
 {
@@ -92,9 +93,11 @@ class MoviesController extends Controller
 
         //dump($movie);
 
-        return view('show', [
+        /* return view('show', [
             'movie' => $movie,
-        ]);
+        ]); */
+        $viewModel = new MovieViewModel($movie);
+        return view('show', $viewModel);
     }
 
     /**
