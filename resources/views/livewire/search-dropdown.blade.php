@@ -3,6 +3,7 @@
         <input 
             wire:model.debounce.500ms='search' type="text" class="bg-gray-800 rounded-full w-64 px-4 pl-8 py-1 focus:outline-none focus:shadow-outline" placeholder="Search" 
             @focus="isOpen = true" 
+            @keydown="isOpen = true"
             @keydown.escape.window="isOpen = false"
             @keydown.shift.tab="isOpen = false">
         <div class="absolute top-0">
@@ -13,7 +14,7 @@
         <div wire:loading class="spinner top-0 right-0 mr-4 mt-4"></div>
 
         @if (strlen($search) > 2)
-            <div class="z-50 absolute bg-gray-800 text-sm rounded w-64 mt-4" x-show="isOpen" >
+            <div class="z-50 absolute bg-gray-800 text-sm rounded w-64 mt-4" x-show.transition="isOpen" >
                 @if ($searchResults->count() >0)
                     <ul>
                         @foreach ($searchResults as $result)
